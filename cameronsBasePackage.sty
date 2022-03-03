@@ -1,0 +1,136 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cameronsBasePackage}[Cameron Roe's personal LaTeX macro and package import collection. CC-BY-SA.]
+
+\RequirePackage[utf8]{inputenc}
+
+\author{Cameron Roe}
+
+%% import every package I've used in a document
+\RequirePackage[english]{babel}
+\RequirePackage{csquotes}
+\RequirePackage{nomencl}
+\RequirePackage{indentfirst}
+\RequirePackage{amsmath}
+\RequirePackage{verbatim}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{minted}
+\RequirePackage{mathtools}
+
+% Set page margins
+\RequirePackage[top=80pt,bottom=80pt,left=68pt,right=68pt]{geometry}
+
+% Prevents LaTeX from filling out a page to the bottom
+\raggedbottom
+
+%changes text color
+\RequirePackage{xcolor}
+
+% All page numbers positioned at the bottom of the page
+\RequirePackage{fancyhdr}
+\fancyhf{} % clear all header and footers
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt} % remove the header rule
+\pagestyle{fancy}
+
+% Changes the style of chapter headings
+\RequirePackage{titlesec}
+\titleformat{\chapter}
+   {\normalfont\LARGE\bfseries}{\thechapter.}{1em}{}
+% Change distance between chapter header and text
+\titlespacing{\chapter}{0pt}{50pt}{2\baselineskip}
+
+% Adds table captions above the table per default
+\RequirePackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+
+% Adds space between caption and table
+\RequirePackage[tableposition=top]{caption}
+\RequirePackage{subcaption}
+% Adds hyperlinks to references and ToC
+\RequirePackage{hyperref}
+\hypersetup{hidelinks,linkcolor = black} % Changes the link color to black and hides the hideous red border that usually is created
+
+\RequirePackage{graphicx}
+%\RequirePackage[font=small,skip=0pt]{caption}
+
+% If multiple images are to be added, a folder (path) with all the images can be added here 
+\graphicspath{ {images/} }
+
+%% define title page template
+\renewcommand{\author}[1]{\gdef\@author{#1}}
+\renewcommand{\@author}{author}
+
+\newcommand*{\dueDate}[1]{\gdef\@dueDate{#1}}
+\newcommand*{\@dueDate}{Due date}
+
+\newcommand*{\classname}[1]{\gdef\@classname{#1}}
+\newcommand*{\@classname}{Class Name}
+
+\renewcommand{\maketitle}{
+    \begin{titlepage}
+    \begin{center}
+    \huge
+        \textbf{\@title} \\
+    
+    \small    
+        \textbf{\@author} \\
+        \@dueDate \\
+        %\vspace{1cm}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1]{usc_seal.jpg}
+            \label{fig:usc_seal}
+        \end{figure}
+        %\vspace{0.69cm}
+    \large
+        University of Southern California \\
+        Viterbi School of Engineering \\
+        \@classname \\
+    \end{center}
+\vspace{0.5cm}
+
+\end{titlepage} }
+
+%% math symbols
+
+%general
+\newcommand{\uvec}[1]{\underline{\hat{#1}}} %unit vector (underlined style)
+\newcommand{\der}[2]{\frac{\rm{d} \it{#1}}{\rm{d} \it{#2}}} %derivative
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}} % partial derivative 
+
+%%Computational fluid dynamics/numerical methods
+
+\newcommand{\hu}{\hat{u}} %discrete solution "u hat"
+\newcommand{\hul}{\underline{\hu}} %vectorized discrete solution 
+\newcommand{\hurl}{\hul^r} %discrete sol at time step / iteration r
+
+%time-marching FD
+\newcommand{\sd}[1]{\overline{\underline{#1}}} %semi-discrete approximation
+\newcommand{\U}{\mathbb{U}_{\theta}} %Fourier coefficients
+
+%finite element method
+\newcommand{\til}[1]{\tilde{#1}}
+\newcommand{\wtil}[1]{\widetilde{#1}} %for wideset expressions
+\newcommand{\vp}[0]{\varphi}
+\newcommand{\ct}[0]{\mathcal{T}} %triangulation T
+\newcommand{\ctb}[0]{\overline{\ct}} %closed triangulation
+\newcommand{\ul}[1]{\underline{#1}} 
+\newcommand{\ulx}[0]{\ul{x}}
+\newcommand{\ch}[0]{\mathcal{H}}  
+\newcommand{\hak}[0]{\ch_{\alpha}^k} %interpolant H
+\newcommand{\hbk}[0]{\ch_{\beta}^k}
+%\newcommand{\intd}[0]{\mathrm{d}} %make the differential d roman type
+
+% replace numerically numbered sections with descriptive "problem" and "discussion" breaks
+\newcommand{\problem}[1]{\section*{Problem #1}}
+\newcommand{\discussion}[1]{\section*{Discussion #1}}
+
+%%thermodynamics
+\newcommand{\statepder}[3]{\left(\pder{#1}{#2} \right)_{#3}} %state-constant partial derivative
+
+
+% properly space and typeset physical units
+
+\newcommand{\unit}[1]{\, \rm{#1}}

@@ -1,0 +1,73 @@
+\documentclass[twocolumn]{article}
+
+\usepackage{cameronsBasePackage}
+
+
+\title{A test document}
+\author{Cameron Roe, in all likelihood}
+\date{\today}
+\dueDate{March 23}
+\classname{AME 100}
+
+\begin{document}
+
+\maketitle
+
+\section{I'm a section}
+Hello, this is a test. 
+
+\problem{1}
+
+For any gas, 
+
+\begin{equation}
+    a = \left[ \left(\frac{\partial p}{\partial \rho} \right)_s \right]^{\frac{1}{2}} = \frac{1}{\sqrt{\rho \beta_s}}
+\end{equation}
+
+For a calorically perfect gas undergoing an isentropic process, 
+
+\begin{equation}
+\begin{split}
+    \left(\frac{p_2(T,\rho))}{p_1}\right)^\frac{\gamma - 1}{\gamma} &= \left( \frac{\rho_2(T)}{\rho_1} \right)^{\gamma - 1} \\
+    \vdots& \\ 
+    \frac{p_2(T,\rho)}{p_1} &= \left(\frac{\rho_2(T)}{\rho_1} \right)^\gamma
+    \end{split}
+\end{equation}
+
+Assume infinitesimally small changes in pressure and density such that $p_2 = p + dp$ and $\rho_2 = \rho + d\rho$. Therefore, 
+
+\begin{equation}
+    1 + \frac{dp}{p} = \left(1 + \frac{d\rho}{\rho}\right)^\gamma
+\end{equation}
+
+Using the first term of the Taylor series expansion for binomials and assuming that $\frac{d\rho}{\rho} \ll 1$, we get
+
+\begin{equation}
+    \frac{dp}{p} = \gamma \frac{d\rho}{\rho}
+\end{equation}
+
+Therefore, we can derive the isentropic compressibility of a calorically perfect gas to be
+
+\begin{equation}
+    \beta_s \equiv \frac{1}{\rho} \left(  \frac{\partial \rho}{\partial p}\right)_s =\left( \frac{1}{\rho}\right) \frac{1}{\gamma} \frac{\rho}{p} = \frac{1}{\gamma p} \label{eq:isentropicCompressibility}
+\end{equation}
+
+For an ideal gas, the isothermal compressibility is 
+
+\begin{equation}
+    \beta_T = \frac{1}{\rho} \left(\frac{\partial \rho}{\partial p} \right)_T = \frac{1}{p}
+\end{equation}
+
+Therefore, $\beta_T = \gamma- \beta_s$ for a calorically perfect gas. Thus, the speed of sound of a calorically perfect gas can be expressed using the isothermal compressibility as 
+
+\begin{equation}
+    \boxed{a = \sqrt{\frac{\gamma}{\rho \beta_T}}}
+    \end{equation}
+
+\pagebreak
+
+\pagebreak
+This should be on a different page or column.
+
+
+\end{document}
