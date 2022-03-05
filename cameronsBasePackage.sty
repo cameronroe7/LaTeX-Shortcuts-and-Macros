@@ -67,6 +67,7 @@
 \newcommand*{\classname}[1]{\gdef\@classname{#1}}
 %\newcommand*{\@classname}{Class Name}
 
+
 \renewcommand{\maketitle}{
     \begin{titlepage}
     \begin{center}
@@ -75,19 +76,19 @@
     
     \small    
         \textbf{\@author} \\
-        \@classname \\
         \@dueDate \\
         %\vspace{1cm}
         \begin{figure}[H]
             \centering
             %\includegraphics[scale=1]{images/usc_seal.jpg}
             \includegraphics[clip, trim=0cm .2cm 0cm .4cm, width=\textwidth]{images/usc_shield.pdf}
+            \label{fig:usc_seal}
         \end{figure}
         %\vspace{0.69cm}
-        \begin{figure}[H]
-            \centering
-            \includegraphics[clip, trim=0cm .6in 0in .6in]{images/uscviterbi_wordmark.pdf}
-        \end{figure}
+    \large
+        University of Southern California \\
+        Viterbi School of Engineering \\
+        \@classname \\
     \end{center}
 \vspace{0.5cm}
 
