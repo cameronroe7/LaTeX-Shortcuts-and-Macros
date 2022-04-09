@@ -13,8 +13,19 @@
 \RequirePackage{verbatim}
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
-%\RequirePackage{minted}
+\RequirePackage{minted}
 \RequirePackage{mathtools}
+\RequirePackage{hyperxmp}
+
+% Adds internal hyperlink support and PDF magic
+\RequirePackage{hyperref}
+\hypersetup{%
+hidelinks,
+linkcolor = black,
+pdfcopyright={This work is licensed under a Creative Commons Attribution 4.0 International License.},
+pdflicenseurl={https://creativecommons.org/licenses/by/4.0/},
+pdfcreator={Overleaf (PDFLatex with hyperref and hyperxmp)}
+}
 
 % Set page margins
 \RequirePackage[top=80pt,bottom=80pt,left=68pt,right=68pt]{geometry}
@@ -47,12 +58,9 @@
 % Adds space between caption and table
 \RequirePackage[tableposition=top]{caption}
 \RequirePackage{subcaption}
-% Adds hyperlinks to references and ToC
-\RequirePackage{hyperref}
-\hypersetup{hidelinks,linkcolor = black} % Changes the link color to black and hides the hideous red border that usually is created
+
 
 \RequirePackage{graphicx}
-%\RequirePackage[font=small,skip=0pt]{caption}
 
 % If multiple images are to be added, a folder (path) with all the images can be added here 
 \graphicspath{ {images/} }
@@ -133,7 +141,6 @@
 %%thermodynamics
 \newcommand{\statepder}[3]{\left(\pder{#1}{#2} \right)_{#3}} %state-constant partial derivative
 
-
-% properly space and typeset physical units
-
+% properly space and typeset physical units 
+%TODO: Use siunitx
 \newcommand{\unit}[1]{\, \rm{#1}}

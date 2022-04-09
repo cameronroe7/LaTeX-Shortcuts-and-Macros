@@ -4,8 +4,7 @@
 
 \title{A test document}
 \author{Cameron Roe, in all likelihood}
-\date{\today}
-\dueDate{March 23}
+\dueDate{\today}
 \classname{AME 100}
 
 \begin{document}
@@ -68,6 +67,71 @@ Therefore, $\beta_T = \gamma- \beta_s$ for a calorically perfect gas. Thus, the 
 \pagebreak
 \discussion{1}
 This should be on a different page or column.
+
+\pagebreak
+\appendix
+\section{Code listing}
+
+\begin{minted}[
+linenos,
+fontsize=\footnotesize,
+fontfamily=tt,
+style=sas,
+mathescape=true
+]{matlab}
+function [fluxArray,indexArray] = getFlux(solution)
+% GETFLUX compute 2nd order approximation of the boundary flux for each solution poin
+arguments
+    solution (:,:) {mustBeSquareMatrix} = rand(25);
+end
+
+%find the grid spacing
+delta = 1 / (length(solution)-1); 
+
+%initialize fluxArray
+fluxArray = zeros(length(solution),length(enumeration('FluxDirections')));
+
+% assign values column by column by iterating through enumerated directions
+col = 1;
+
+%resolve the solution edges into the corresponding indices
+leftEdge = [(1 : 25)',ones(25,1)];
+leftEdge = flip(leftEdge);
+
+%tryhard LaTeX comment: $E = mc^2$
+
+rightEdge = [(1 : 25)', 25*ones(25,1)];
+rightEdge = flip(rightEdge);
+
+topEdge = [ones(25,1),(1:25)'];
+
+bottomEdge = [25*ones(25,1), (1:25)'];
+
+%compute fluxes
+for fluxDirection = enumeration('FluxDirections')'
+    %disp(fluxDirection)
+    if fluxDirection == FluxDirections.LEFT
+        edge = leftEdge;
+    elseif fluxDirection == FluxDirections.RIGHT
+        edge = rightEdge;
+    elseif fluxDirection == FluxDirections.BOTTOM
+        edge = bottomEdge;
+    elseif fluxDirection == FluxDirections.TOP
+       edge = topEdge;
+    else
+        error(strcat('Unable to resolve flux direction: ',char(fluxDirection)));
+    end
+    
+   for idx = 1 : length(solution)
+       fluxArray(idx,col) = fluxFromDifference(edge(idx,:),solution,fluxDirection,delta);
+       indexArray{idx,col} = edge(idx,:);
+   end
+   col = col + 1;
+end
+
+end
+
+\end{minted}
 
 
 \end{document}
