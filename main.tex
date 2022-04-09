@@ -68,6 +68,60 @@ Therefore, $\beta_T = \gamma- \beta_s$ for a calorically perfect gas. Thus, the 
 \discussion{1}
 This should be on a different page or column.
 
+\section{A graph of a function}
+
+\newcommand{\E}{\mathrm{e}} 
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+		my axis style,
+		width=.5\textwidth,
+		height=.5\textwidth,
+		legend entries={
+			$y = x\E^{-x}$,
+			$y = 2x\E^{-x}$,
+			$y = 0.5x\E^{-x}$
+		},
+		legend pos=north east
+	]
+	
+	\addplot[
+		domain=0:5,
+		thick,
+		->
+	]
+	{x*exp(-x)};
+
+	\addplot[
+		domain=0:5,
+		thick,
+		red,
+		dashed,
+		->
+	]
+	{2*x*exp(-x)};
+
+	\addplot[
+		domain=0:5,
+		thick,
+		blue,
+		dashdotted,
+		->
+	]
+	{.5*x*exp(-x)};
+	
+	\fill[
+		black
+	]
+	(1,.36788) circle (2pt) node[above right] {\footnotesize $(1, 1/\E)$};
+	
+	\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{fig:my-awesome-graph}
+\end{figure}
+
 \pagebreak
 \appendix
 \section{Code listing}

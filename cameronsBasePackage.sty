@@ -59,11 +59,60 @@ pdfcreator={Overleaf (PDFLatex with hyperref and hyperxmp)}
 \RequirePackage[tableposition=top]{caption}
 \RequirePackage{subcaption}
 
-
+% Handle graphics nicely
 \RequirePackage{graphicx}
-
 % If multiple images are to be added, a folder (path) with all the images can be added here 
 \graphicspath{ {images/} }
+
+% Set a style for plotting functions directly in LaTeX
+\usepackage{pgfplots}
+	\usetikzlibrary{
+		calc,
+		patterns,
+		positioning
+	}
+	\pgfplotsset{
+		compat=1.16,
+		samples=200,
+		clip=false,
+		my axis style/.style={
+			axis x line=middle,
+			axis y line=middle,
+			legend pos=outer north east,
+			axis line style={
+				->,
+			},
+			legend style={
+				font=\footnotesize
+			},
+			label style={
+				font=\footnotesize
+			},
+			tick label style={
+				font=\footnotesize
+			},
+			xlabel style={
+				at={
+					(ticklabel* cs:1)
+				},
+				anchor=west,
+				font=\footnotesize,
+			},
+			ylabel style={
+				at={
+					(ticklabel* cs:1)
+				},
+				anchor=west,
+				font=\footnotesize,
+			},
+			xlabel=$X$,
+			ylabel=$Y$
+		},
+	}
+	\tikzset{
+		>=stealth
+	}
+
 
 %% define title page template
 \renewcommand{\author}[1]{\gdef\@author{#1}}
